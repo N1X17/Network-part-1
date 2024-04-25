@@ -25,7 +25,8 @@ def receive_messages():
     while True:
         try:
             data, _ = clientSocket.recvfrom(bufferSize)
-            print(data.decode())
+            message = data.decode()
+            print(message)
         except Exception as e:
             print("Error receiving message:", e)
             break
@@ -37,8 +38,7 @@ threading.Thread(target=receive_messages, daemon=True).start()
 while True:
     message = input()
     if message.lower() == "exit":
-        exitMsg = "exit"
-        clientSocket.sendto(exitMsg.encode(), (serverName, serverPort))
+        clientSocket.sendto("exit".encode(), (serverName, serverPort))
         break
     send_message = f"[{client_name}]->{message}"
     clientSocket.sendto(send_message.encode(), (serverName, serverPort))
