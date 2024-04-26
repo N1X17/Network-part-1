@@ -8,10 +8,18 @@ bufferSize = 1024          # Buffer size for receiving data
 
 # Create a UDP server socket
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-serverSocket.bind((serverHost, serverPort))
 
 print(f"Server hosting on IP→> {serverHost}")
+
+#handiling error when other server use same port
+try:
+    serverSocket.bind((serverHost, serverPort))
+except OSError as e:
+    print(f"Error binding socket : {e}")
+    exit(1)
+
 print("Server Running...")
+
 
 # Dictionary to keep track of connected clients by name
 clients = {}
