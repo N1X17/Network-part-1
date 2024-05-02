@@ -2,9 +2,9 @@ import socket
 import threading
 
 # Server configuration
-serverHost = 'localhost'  # Set the server's IP address
-serverPort = 12349         # Port number for the server
-bufferSize = 1024          # Buffer size for receiving data
+serverHost = socket.gethostbyname(socket.gethostname()) 
+serverPort = 12349        
+bufferSize = 1024         
 
 # Create a UDP server socket
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
