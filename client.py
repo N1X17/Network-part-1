@@ -2,7 +2,7 @@ import socket
 import threading
 
 # Server configuration
-serverName = 'localhost'  # Use the same as server's host
+serverName = socket.gethostbyname(socket.gethostname())  # Use the same as server's host
 serverPort = 12349        # Use the same as server's port
 bufferSize = 1024         # Buffer size for data transmission
 
@@ -10,7 +10,7 @@ bufferSize = 1024         # Buffer size for data transmission
 clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # Client connection details
-clientAddress = ('localhost', 0)  # Use a random port for the client
+clientAddress = (socket.gethostbyname(socket.gethostname()), 0)  # Use a random port for the client
 clientSocket.bind(clientAddress)
 
 # Get the client's name and send it to the server to register
